@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create User</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container-fluid row">
+            <div class="container col-5 me-1">
+                <h1 class="mx-auto mt-3" style="width: 170px;">Add User</h1>
+                <form action="/user/add" method="post">
+                    <div class="mb-3">
+                        <label for="firstname" class="form-label">First Name:</label>
+                        <input type="text" class="form-control" name="firstname" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastname" class="form-label">Last Name:</label>
+                        <input type="text" class="form-control" name="lastname" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" name="email" />
+                    </div>
+                    <button class="btn btn-success" type="submit">Add User</button>
+                    <div class="error">
+                        {% with messages = get_flashed_messages(category_filter = ["addusernew"]) %}
+                            {% for message in messages: %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                </form>
+            </div>
+            <div class="container col-1 ms-6">
+                <form action="/users" method="post">
+                    <button class="btn btn-warning mt-4" type="submit">Home</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

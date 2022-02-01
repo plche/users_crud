@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Users</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <h1 class="mx-auto my-3" style="width: 360px;">Here are our users!!!</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Created At</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users: %}
+                        <tr>
+                            <td>{{user.first_name}}</td>
+                            <td>{{user.last_name}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.created_at}}</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Actions">
+                                    <form class="btn-group" action="/user/show/{{user.id}}" method="post">
+                                        <button class="btn btn-outline-info btn-sm">Show</button>
+                                    </form>
+                                    <form class="btn-group" action="/user/edit/{{user.id}}" method="get">
+                                        <button class="btn btn-outline-primary btn-sm">Edit</button>
+                                    </form>
+                                    <form class="btn-group" action="/user/delete/{{user.id}}" method="post">
+                                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <form action="/user/new" method="get">
+                <button class="btn btn-primary" type="submit">Add a User</button>
+            </form>
+        </div>
+    </body>
+</html>
