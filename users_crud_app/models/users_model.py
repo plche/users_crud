@@ -1,4 +1,4 @@
-from users_cr_app.config.mysqlconnection import connectToMySQL
+from users_crud_app.config.mysqlconnection import connectToMySQL
 
 class User:
     def __init__(self, id, first_name, last_name, email, created_at, updated_at):

@@ -1,6 +1,6 @@
 from flask import render_template, redirect, request, session, flash
-from users_cr_app import app
-from users_cr_app.models.users_model import User
+from users_crud_app import app
+from users_crud_app.models.users_model import User
 
 @app.route('/', methods=["GET"])
 def home():
